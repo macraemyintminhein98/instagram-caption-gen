@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaCaption AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">InstaCaption AI</h1>
+        <p class="text-center text-gray-600 mb-8">Generate engaging Instagram captions instantly!</p>
+
+        <div class="mb-4">
+            <label for="keywords" class="block text-gray-700 text-sm font-bold mb-2">Keywords (comma-separated):</label>
+            <input type="text" id="keywords" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., travel, adventure, sunset">
+        </div>
+
+        <div class="mb-4">
+            <label for="tone" class="block text-gray-700 text-sm font-bold mb-2">Tone:</label>
+            <select id="tone" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="friendly">Friendly</option>
+                <option value="funny">Funny</option>
+                <option value="inspiring">Inspiring</option>
+                <option value="professional">Professional</option>
+                <option value="witty">Witty</option>
+            </select>
+        </div>
+
+        <div class="mb-6">
+            <label for="emojis" class="block text-gray-700 text-sm font-bold mb-2">Emojis (optional):</label>
+            <input type="text" id="emojis" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., ✨📸✈️">
+        </div>
+
+        <button id="generateBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+            Generate Caption
+        </button>
+
+        <div id="captionOutput" class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded hidden">
+            <h3 class="text-lg font-semibold mb-2">Your Caption:</h3>
+            <p id="generatedText" class="text-gray-800 whitespace-pre-wrap"></p>
+        </div>
+
+        <div class="mt-8 text-center">
+            <a href="#" id="checkoutBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Get Your Unlimited Access! ($9.99)</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const keywords = document.getElementById('keywords').value;
+            const tone = document.getElementById('tone').value;
+            const emojis = document.getElementById('emojis').value;
+            const outputDiv = document.getElementById('captionOutput');
+            const generatedTextP = document.getElementById('generatedText');
+
+            outputDiv.classList.add('hidden');
+            generatedTextP.textContent = 'Generating...';
+            outputDiv.classList.remove('hidden');
+
+            // This is a placeholder. In a real app, you'd send this to your backend/LLM API.
+            const prompt = `Generate an Instagram caption with keywords: ${keywords}, in a ${tone} tone, including emojis: ${emojis}.`;
+            
+            // Simulate API call
+            setTimeout(() => {
+                const dummyCaption = `Ready for some ${keywords.split(',')[0] || 'amazing'}${emojis ? ' ' + emojis : ''}! Feeling utterly ${tone.slice(0, 5)}! This is a generated caption based on your input. #${keywords.replace(/, /g, ' #')}`; 
+                generatedTextP.textContent = dummyCaption;
+            }, 1500);
+
+        });
+
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            alert('Integrating Stripe Checkout here for $9.99!');
+            // In a real app, this would initiate a Stripe checkout session.
+        });
+    </script>
+</body>
+</html>
